@@ -36,6 +36,21 @@ def sort_by_speed():
     # loop finished here
     db.close()
 
+# print all aircraft, but sort by speed
+def sort_by_max_g():
+    '''sort all aircraft nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    sort_with_max_g = "SELECT * FROM fighter ORDER BY max_g DESC;"
+    cursor.execute(sort_with_max_g)
+    results = cursor.fetchall()
+    # loop through all results first
+    print("Name                         Speed   Max_G Climb Range Payload")
+    for fighter in results:
+        print(f"{fighter[1]:<30}{fighter[2]:<8}{fighter[3]:<6}{fighter[4]:<6}{fighter[5]:<6}{fighter[6]:<6}")
+    # loop finished here
+    db.close()
+
 # print all aircraft, but sort by climb rate   
 def sort_by_climbrate():
     '''sort all aircraft nicely'''
@@ -87,10 +102,11 @@ while True:
     '''What would you like to do?
     1. Print all aircraft
     2. Sort all aircraft by speed
-    3. Sort all aircraft by climb rate
-    4. Sort all aircraft by range
-    5. Sort all aircraft by payload
-    6. Exit the program
+    3. Sort all aircraft by max g force
+    4. Sort all aircraft by climb rate
+    5. Sort all aircraft by range
+    6. Sort all aircraft by payload
+    7. Exit the program
 
     ''')
     if user_input == "1":
@@ -98,12 +114,14 @@ while True:
     elif user_input == '2':
         sort_by_speed()
     elif user_input == '3':
-        sort_by_climbrate()
+        sort_by_max_g()
     elif user_input == '4':
-        sort_by_range()
+        sort_by_climbrate()
     elif user_input == '5':
         sort_by_range()
-    elif user_input == "6":
+    elif user_input == '6':
+        sort_by_payload()
+    elif user_input == "7":
         break
     else:
         print('That was not an option!')
