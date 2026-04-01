@@ -6,12 +6,73 @@ import sqlite3
 DATABASE = "fighter.db"
 
 #functions
+#printing all aircraft
 def print_all_aircraft():
     '''print all aircraft nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    sql = "SELECT * FROM fighter;"
-    cursor.execute(sql)
+    print_aircraft = "SELECT * FROM fighter;"
+    cursor.execute(print_aircraft)
+    results = cursor.fetchall()
+    #loop through all results first
+    print("Name                         Speed   Max_G Climb Range Payload")
+    for fighter in results:
+        print(f"{fighter[1]:<30}{fighter[2]:<8}{fighter[3]:<6}{fighter[4]:<6}{fighter[5]:<6}{fighter[6]:<6}")
+    #loop finished here
+    db.close()
+
+#print all aircraft, but sort by speed
+def sort_by_speed():
+    '''sort all aircraft nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    sort_with_speed = "SELECT * FROM fighter ORDER BY speed DESC;"
+    cursor.execute(sort_with_speed)
+    results = cursor.fetchall()
+    #loop through all results first
+    print("Name                         Speed   Max_G Climb Range Payload")
+    for fighter in results:
+        print(f"{fighter[1]:<30}{fighter[2]:<8}{fighter[3]:<6}{fighter[4]:<6}{fighter[5]:<6}{fighter[6]:<6}")
+    #loop finished here
+    db.close()
+
+ #print all aircraft, but sort by climb rate   
+def sort_by_climbrate():
+    '''sort all aircraft nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    sort_with_climbrate = "SELECT * FROM fighter ORDER BY climb_rate DESC;"
+    cursor.execute(sort_with_climbrate)
+    results = cursor.fetchall()
+    #loop through all results first
+    print("Name                         Speed   Max_G Climb Range Payload")
+    for fighter in results:
+        print(f"{fighter[1]:<30}{fighter[2]:<8}{fighter[3]:<6}{fighter[4]:<6}{fighter[5]:<6}{fighter[6]:<6}")
+    #loop finished here
+    db.close()
+
+#print all aircraft, but sort by range
+def sort_by_range():
+    '''sort all aircraft nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    sort_with_range = "SELECT * FROM fighter ORDER BY climb_rate DESC;"
+    cursor.execute(sort_with_range)
+    results = cursor.fetchall()
+    #loop through all results first
+    print("Name                         Speed   Max_G Climb Range Payload")
+    for fighter in results:
+        print(f"{fighter[1]:<30}{fighter[2]:<8}{fighter[3]:<6}{fighter[4]:<6}{fighter[5]:<6}{fighter[6]:<6}")
+    #loop finished here
+    db.close()
+
+#print all range, but sort by payload
+def sort_by_payload():
+    '''sort all aircraft nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    sort_with_payload = "SELECT * FROM fighter ORDER BY climb_rate DESC;"
+    cursor.execute(sort_with_payload)
     results = cursor.fetchall()
     #loop through all results first
     print("Name                         Speed   Max_G Climb Range Payload")
@@ -22,10 +83,18 @@ def print_all_aircraft():
 
 #main code
 while True:
-    user_input = input("\nWhat would you like to do? \n1. Print all aircraft \n2. Exit the program \n")
+    user_input = input("\nWhat would you like to do? \n1. Print all aircraft \n2. Sort all aircraft by speed \n3. Sort all aircraft by climb rate \n4. Sort all aircraft by range \n5. Sort all aircraft by payload \n6. Exit the program\n")
     if user_input == "1":
         print_all_aircraft()
     elif user_input == '2':
+        sort_by_speed()
+    elif user_input == '3':
+        sort_by_climbrate()
+    elif user_input == '4':
+        sort_by_range()
+    elif user_input == '5':
+        sort_by_range()
+    elif user_input == "6":
         break
     else:
         print('That was not an option!')
