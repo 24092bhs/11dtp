@@ -56,7 +56,7 @@ def sort_by_range():
     '''sort all aircraft nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    sort_with_range = "SELECT * FROM fighter ORDER BY climb_rate DESC;"
+    sort_with_range = "SELECT * FROM fighter ORDER BY range DESC;"
     cursor.execute(sort_with_range)
     results = cursor.fetchall()
     #loop through all results first
@@ -71,7 +71,7 @@ def sort_by_payload():
     '''sort all aircraft nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    sort_with_payload = "SELECT * FROM fighter ORDER BY climb_rate DESC;"
+    sort_with_payload = "SELECT * FROM fighter ORDER BY payload DESC;"
     cursor.execute(sort_with_payload)
     results = cursor.fetchall()
     #loop through all results first
