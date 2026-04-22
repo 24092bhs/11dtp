@@ -119,4 +119,22 @@ def order_blind_by_difficulty():
 
 # print games that can be played with 4 or more players
 
-members_by_last_name()
+# main code
+while True:
+    user_input = print(input('''Welcome to the Theatresports Database!
+      What would you like to search?
+      1. All of the games in the database
+      2. All of the blind round games
+      3. All of the choice round games
+      4. The names of the BHS Theatresports team
+      5. The information (name or student ID) of a team member
+      6. Exit the program
+    
+    '''))
+    if user_input == '1':
+        print_all_games()
+    elif user_input == '6':
+        break
+    else:
+        print('That was not an option!')
+        break
