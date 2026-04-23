@@ -121,7 +121,7 @@ def order_blind_by_difficulty():
 
 # main code
 while True:
-    user_input = print(input('''Welcome to the Theatresports Database!
+    user_input = int(input('''\nWelcome to the Theatresports Database!
       What would you like to search?
       1. All of the games in the database
       2. All of the blind round games
@@ -131,10 +131,24 @@ while True:
       6. Exit the program
     
     '''))
-    if user_input == '1':
+    if user_input == 1:
         print_all_games()
-    elif user_input == '6':
+    elif user_input == 2:
+        print_blind_round()
+    elif user_input == 3:
+        print_choice_round()
+    elif user_input == 4:
+        sorted_by = int(input('''\nDo you want it sorted by:
+                              1. First name
+                              2. Last name'''))
+        if sorted_by == 1:
+            members_by_first_name()
+        elif sorted_by == 2:
+            members_by_last_name()
+        
+    elif user_input == 6:
+        print("Thank you for using the Theatresports Database!")
         break
     else:
-        print('That was not an option!')
+        print('That is not an option!')
         break
