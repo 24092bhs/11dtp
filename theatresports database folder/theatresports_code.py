@@ -121,6 +121,7 @@ def order_blind_by_difficulty():
 
 # main code
 while True:
+    # ask the player what they would like to do
     user_input = int(input('''\nWelcome to the Theatresports Database!
       What would you like to search?
       1. All of the games in the database
@@ -129,14 +130,30 @@ while True:
       4. The names of the BHS Theatresports team
       5. The information (name or student ID) of a team member
       6. Exit the program
-    
+
     '''))
+    # all of the games in the database printed
     if user_input == 1:
         print_all_games()
+    # blind round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
     elif user_input == 2:
-        print_blind_round()
+        blind_data_sorted = int(input('''How would you like the data sorted?
+              1. By difficulty
+              2. By popularity
+              3. By number of players
+              4. I just want to the see the data as it is\n'''))
+        if blind_data_sorted == 1:
+
+        elif blind_data_sorted == 2:
+            
+        elif blind_data_sorted == 3:
+
+        elif blind_data_sorted == 4:
+            print_blind_round()
+    # choice round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
     elif user_input == 3:
         print_choice_round()
+    # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
     elif user_input == 4:
         sorted_by = int(input('''\nDo you want it sorted by:
                               1. First name
@@ -145,11 +162,14 @@ while True:
             members_by_first_name()
         elif sorted_by == 2:
             members_by_last_name()
+    # finding member information (needs to be updated)
     elif user_input == 5:
         find_id()
+    # exit the program
     elif user_input == 6:
         print("Thank you for using the Theatresports Database!")
         break
+    # catches all invalid inputs
     else:
-        print('That is not an option!')
+        print('That is not an option! Please put one of the numbers provided.')
         break
