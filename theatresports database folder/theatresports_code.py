@@ -52,20 +52,6 @@ def print_choice_round():
     # end of loop
     db.close()
 
-# find a student id
-def find_id():
-    '''find the student id of one of the team members''' # needs to be worked on!
-    db = sqlite3.connect(DATABASE)
-    cursor = db.cursor()
-    find_student_id = "SELECT * FROM team_member WHERE first_name = 'Ashley';"
-    cursor.execute(find_student_id)
-    results = cursor.fetchall()
-    # loop through all results
-    for member in results:
-        print(f"{member[1]} {member[2]}: Student ID {member[0]}")
-    # end of loop
-    db.close()
-
 # sort all members by first name
 def members_by_first_name():
     '''print all members nicely (first name)'''
@@ -93,6 +79,20 @@ def members_by_last_name():
     print("First Name: Last Name:")
     for member in results:
         print(f"{member[1]:<12}{member[2]:<12}")
+    # end of loop
+    db.close()
+
+# find a student id
+def find_id():
+    '''find the student id of one of the team members''' # needs to be worked on!
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    find_student_id = "SELECT * FROM team_member WHERE first_name = 'Ashley';"
+    cursor.execute(find_student_id)
+    results = cursor.fetchall()
+    # loop through all results
+    for member in results:
+        print(f"{member[1]} {member[2]}: Student ID {member[0]}")
     # end of loop
     db.close()
 
@@ -140,12 +140,13 @@ while True:
     elif user_input == 4:
         sorted_by = int(input('''\nDo you want it sorted by:
                               1. First name
-                              2. Last name'''))
+                              2. Last name\n'''))
         if sorted_by == 1:
             members_by_first_name()
         elif sorted_by == 2:
             members_by_last_name()
-        
+    elif user_input == 5:
+        find_id()
     elif user_input == 6:
         print("Thank you for using the Theatresports Database!")
         break
