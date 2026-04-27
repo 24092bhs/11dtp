@@ -5,6 +5,12 @@ import sqlite3
 
 # constants and variables
 DATABASE = "theatresports.db"
+number_one = 1
+number_two = 2
+number_three = 3
+number_four = 4
+number_five = 5
+number_six = 6
 
 # functions
 # print all games
@@ -101,8 +107,8 @@ def order_blind_by_difficulty():
     '''print all blind round games games nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    print_blind = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY game_name ASC;"
-    cursor.execute(print_blind)
+    blind_difficulty = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY difficulty ASC;"
+    cursor.execute(blind_difficulty)
     results = cursor.fetchall()
     # loop through all results
     print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
@@ -112,6 +118,19 @@ def order_blind_by_difficulty():
     db.close()
 
 # sort all choice round games by difficulty
+def order_choice_by_difficulty():
+    '''print all blind round games games nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    choice_difficulty = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY difficulty ASC;"
+    cursor.execute(choice_difficulty)
+    results = cursor.fetchall()
+    # loop through all results
+    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
+    for game in results:
+        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
+    # end of loop
+    db.close()
 
 # sort all games by popularity
 
@@ -133,7 +152,7 @@ while True:
 
     '''))
     # all of the games in the database printed
-    if user_input == 1:
+    if user_input == number_one:
         print_all_games()
     # blind round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
     elif user_input == 2:
@@ -142,31 +161,40 @@ while True:
               2. By popularity
               3. By number of players
               4. I just want to the see the data as it is\n'''))
-        if blind_data_sorted == 1:
+        if blind_data_sorted == number_one:
 
-        elif blind_data_sorted == 2:
+        elif blind_data_sorted == number_two:
             
-        elif blind_data_sorted == 3:
+        elif blind_data_sorted == number_three:
 
-        elif blind_data_sorted == 4:
+        elif blind_data_sorted == number_four:
             print_blind_round()
     # choice round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
-    elif user_input == 3:
-        print_choice_round()
+    elif user_input == number_three:
+        choice_data_sorted = int(input('''How would you like the data sorted?
+              1. By difficulty
+              2. By popularity
+              3. By number of players
+              4. I just want to the see the data as it is\n'''))
+        if choice_data_sorted == number_one:
+        elif choice_data_sorted == number_two:
+        elif choice_data_sorted == number_three:
+        elif choice_data_sorted == number_four:
+            print_choice_round()
     # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
-    elif user_input == 4:
+    elif user_input == number_four:
         sorted_by = int(input('''\nDo you want it sorted by:
                               1. First name
                               2. Last name\n'''))
-        if sorted_by == 1:
+        if sorted_by == number_one:
             members_by_first_name()
-        elif sorted_by == 2:
+        elif sorted_by == number_two:
             members_by_last_name()
     # finding member information (needs to be updated)
-    elif user_input == 5:
+    elif user_input == number_five:
         find_id()
     # exit the program
-    elif user_input == 6:
+    elif user_input == number_six:
         print("Thank you for using the Theatresports Database!")
         break
     # catches all invalid inputs
