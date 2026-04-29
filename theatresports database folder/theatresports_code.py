@@ -18,7 +18,7 @@ def print_all_games():
     '''print all games nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    print_games = "SELECT * FROM theatre_game;"
+    print_games = "SELECT * FROM theatre_game ORDER BY game_name ASC;"
     cursor.execute(print_games)
     results = cursor.fetchall()
     # loop through all results
@@ -63,7 +63,7 @@ def order_blind_by_popularity():
     '''print all blind round games games nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    blind_popularity = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY popularity ASC;"
+    blind_popularity = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY popularity, game_name ASC;"
     cursor.execute(blind_popularity)
     results = cursor.fetchall()
     # loop through all results
