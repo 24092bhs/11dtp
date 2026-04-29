@@ -43,6 +43,23 @@ def print_blind_round():
     # end of loop
     db.close()
 
+# sort all blind round games by difficulty (not done!)
+def order_blind_by_difficulty():
+    '''print all blind round games games nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    blind_difficulty = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY difficulty ASC;"
+    cursor.execute(blind_difficulty)
+    results = cursor.fetchall()
+    # loop through all results
+    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
+    for game in results:
+        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
+    # end of loop
+    db.close()
+
+# sort all blind round games by popularity
+
 # print all choice round games
 def print_choice_round():
     '''print all choice round games games nicely'''
@@ -57,6 +74,23 @@ def print_choice_round():
         print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
     # end of loop
     db.close()
+
+# sort all choice round games by difficulty
+def order_choice_by_difficulty():
+    '''print all blind round games games nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    choice_difficulty = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY difficulty ASC;"
+    cursor.execute(choice_difficulty)
+    results = cursor.fetchall()
+    # loop through all results
+    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
+    for game in results:
+        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
+    # end of loop
+    db.close()
+
+# sort all choice round games by popularity
 
 # sort all members by first name
 def members_by_first_name():
@@ -102,38 +136,6 @@ def find_id():
     # end of loop
     db.close()
 
-# sort all blind round games by difficulty (not done!)
-def order_blind_by_difficulty():
-    '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
-    cursor = db.cursor()
-    blind_difficulty = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY difficulty ASC;"
-    cursor.execute(blind_difficulty)
-    results = cursor.fetchall()
-    # loop through all results
-    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
-    for game in results:
-        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
-    # end of loop
-    db.close()
-
-# sort all choice round games by difficulty
-def order_choice_by_difficulty():
-    '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
-    cursor = db.cursor()
-    choice_difficulty = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY difficulty ASC;"
-    cursor.execute(choice_difficulty)
-    results = cursor.fetchall()
-    # loop through all results
-    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
-    for game in results:
-        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
-    # end of loop
-    db.close()
-
-# sort all games by popularity
-
 # print games that can be played with less than 4 players
 
 # print games that can be played with 4 or more players
@@ -159,27 +161,22 @@ while True:
         blind_data_sorted = int(input('''How would you like the data sorted?
               1. By difficulty
               2. By popularity
-              3. By number of players
-              4. I just want to the see the data as it is\n'''))
+              3. I just want to the see the data as it is\n'''))
         if blind_data_sorted == number_one:
 
         elif blind_data_sorted == number_two:
             
         elif blind_data_sorted == number_three:
-
-        elif blind_data_sorted == number_four:
             print_blind_round()
     # choice round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
     elif user_input == number_three:
         choice_data_sorted = int(input('''How would you like the data sorted?
               1. By difficulty
               2. By popularity
-              3. By number of players
-              4. I just want to the see the data as it is\n'''))
+              3. I just want to the see the data as it is\n'''))
         if choice_data_sorted == number_one:
         elif choice_data_sorted == number_two:
         elif choice_data_sorted == number_three:
-        elif choice_data_sorted == number_four:
             print_choice_round()
     # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
     elif user_input == number_four:
