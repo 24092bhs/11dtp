@@ -148,7 +148,7 @@ def members_by_last_name():
     # end of loop
     db.close()
 
-# find a student id
+# find a student id (NEEDS TO BE FINISHED)
 def find_id():
     '''find the student id of one of the team members''' # needs to be worked on!
     db = sqlite3.connect(DATABASE)
@@ -163,8 +163,34 @@ def find_id():
     db.close()
 
 # print games that can be played with less than 4 players
+def two_or_three_players():
+    '''print all games nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    less_than_four = "Changed to SELECT * FROM theatre_game WHERE min_people < 4 ORDER BY min_people ASC;"
+    cursor.execute(less_than_four)
+    results = cursor.fetchall()
+    # loop through all results
+    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
+    for game in results:
+        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
+    # end of loop
+    db.close()
 
 # print games that can be played with 4 or more players
+def four_plus_players():
+    '''print all games nicely'''
+    db = sqlite3.connect(DATABASE)
+    cursor = db.cursor()
+    four_or_more = "SELECT * FROM theatre_game WHERE min_people >= 4;"
+    cursor.execute(four_or_more)
+    results = cursor.fetchall()
+    # loop through all results
+    print("Name:                                   Round:     Difficulty: Popularity: Min. People:")
+    for game in results:
+        print(f"{game[1]:<40}{game[2]:<12}{game[3]:<12}{game[4]:<12}{game[5]:<12}")
+    # end of loop
+    db.close()
 
 # main code
 while True:
