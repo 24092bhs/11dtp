@@ -225,71 +225,74 @@ def four_plus_players():
 
 # main code
 while True:
-    # ask the player what they would like to do
-    user_input = int(input('''\nWelcome to the Theatresports Database!
-      What would you like to search?
-      1. All of the games in the database
-      2. All of the blind round games
-      3. All of the choice round games
-      4. Find what games can be played with all the members of my team
-      5. The names of the BHS Theatresports team
-      6. The information (name or student ID) of a team member
-      7. Exit the program
+    try:
+        # ask the player what they would like to do
+        user_input = int(input('''\nWelcome to the Theatresports Database!
+        What would you like to search?
+        1. All of the games in the database
+        2. All of the blind round games
+        3. All of the choice round games
+        4. Find what games can be played with all the members of my team
+        5. The names of the BHS Theatresports team
+        6. The information (name or student ID) of a team member
+        7. Exit the program
 
-    '''))
-    # all of the games in the database printed
-    if user_input == number_one:
-        print_all_games()
-    # blind round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
-    elif user_input == 2:
-        blind_data_sorted = int(input('''How would you like the data sorted?
-              1. By difficulty
-              2. By popularity
-              3. I just want to the see the data as it is\n'''))
-        if blind_data_sorted == number_one:
-            order_blind_by_difficulty()
-        elif blind_data_sorted == number_two:
-            order_blind_by_popularity()
-        elif blind_data_sorted == number_three:
-            print_blind_round()
-    # choice round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
-    elif user_input == number_three:
-        choice_data_sorted = int(input('''How would you like the data sorted?
-              1. By difficulty
-              2. By popularity
-              3. I just want to the see the data as it is\n'''))
-        if choice_data_sorted == number_one:
-            order_choice_by_difficulty()
-        elif choice_data_sorted == number_two:
-            order_choice_by_popularity()
-        elif choice_data_sorted == number_three:
-            print_choice_round()
-    # find games that can be played with certain numbers of players
-    elif user_input == number_four:
-        number_of_players = int(input('How many people are in your team?\n'))
-        if number_of_players < number_four:
-            two_or_three_players()
-        elif number_seven > number_of_players >= number_four:
-            four_plus_players()
-        elif number_of_players >= number_seven:
-            print("Sorry, I cannot help you! You can only have up to six players per team.")
-    # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
-    elif user_input == number_five:
-        sorted_by = int(input('''\nDo you want it sorted by:
-                              1. First name
-                              2. Last name\n'''))
-        if sorted_by == number_one:
-            members_by_first_name()
-        elif sorted_by == number_two:
-            members_by_last_name()
-    # finding member information (needs to be updated)
-    elif user_input == number_six:
-        find_id()
-    # exit the program
-    elif user_input == number_seven:
-        print("Thank you for using the Theatresports Database!")
-        break
-    # catches all invalid inputs
-    else:
+        '''))
+        # all of the games in the database printed
+        if user_input == number_one:
+            print_all_games()
+        # blind round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
+        elif user_input == 2:
+            blind_data_sorted = int(input('''How would you like the data sorted?
+                1. By difficulty
+                2. By popularity
+                3. I just want to the see the data as it is\n'''))
+            if blind_data_sorted == number_one:
+                order_blind_by_difficulty()
+            elif blind_data_sorted == number_two:
+                order_blind_by_popularity()
+            elif blind_data_sorted == number_three:
+                print_blind_round()
+        # choice round games: if and elif statements for different ways of sorting the data (need to include invalid inputs and more functions!)
+        elif user_input == number_three:
+            choice_data_sorted = int(input('''How would you like the data sorted?
+                1. By difficulty
+                2. By popularity
+                3. I just want to the see the data as it is\n'''))
+            if choice_data_sorted == number_one:
+                order_choice_by_difficulty()
+            elif choice_data_sorted == number_two:
+                order_choice_by_popularity()
+            elif choice_data_sorted == number_three:
+                print_choice_round()
+        # find games that can be played with certain numbers of players
+        elif user_input == number_four:
+            number_of_players = int(input('How many people are in your team?\n'))
+            if number_of_players < number_four:
+                two_or_three_players()
+            elif number_seven > number_of_players >= number_four:
+                four_plus_players()
+            elif number_of_players >= number_seven:
+                print("Sorry, I cannot help you! You can only have up to six players per team.")
+        # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
+        elif user_input == number_five:
+            sorted_by = int(input('''\nDo you want it sorted by:
+                                1. First name
+                                2. Last name\n'''))
+            if sorted_by == number_one:
+                members_by_first_name()
+            elif sorted_by == number_two:
+                members_by_last_name()
+        # finding member information (needs to be updated)
+        elif user_input == number_six:
+            find_id()
+        # exit the program
+        elif user_input == number_seven:
+            print("Thank you for using the Theatresports Database!")
+            break
+        # catches all invalid inputs
+        else:
+            print('That is not an option! Please put one of the numbers provided.')
+            break
+    except:
         print('That is not an option! Please put one of the numbers provided.')
-        break
