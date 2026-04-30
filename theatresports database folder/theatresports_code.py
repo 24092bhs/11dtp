@@ -11,6 +11,7 @@ number_three = 3
 number_four = 4
 number_five = 5
 number_six = 6
+number_seven = 7
 
 # functions
 # print all games
@@ -200,9 +201,10 @@ while True:
       1. All of the games in the database
       2. All of the blind round games
       3. All of the choice round games
-      4. The names of the BHS Theatresports team
-      5. The information (name or student ID) of a team member
-      6. Exit the program
+      4. Find what games can be played with all the members of my team
+      5. The names of the BHS Theatresports team
+      6. The information (name or student ID) of a team member
+      7. Exit the program
 
     '''))
     # all of the games in the database printed
@@ -232,8 +234,15 @@ while True:
             order_choice_by_popularity()
         elif choice_data_sorted == number_three:
             print_choice_round()
-    # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
+    # find games that can be played with certain numbers of players
     elif user_input == number_four:
+        number_of_players = int(input('How many people are in your team?'))
+        if number_of_players < number_four:
+            two_or_three_players()
+        elif number_of_players >= number_four:
+            four_plus_players()
+    # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
+    elif user_input == number_five:
         sorted_by = int(input('''\nDo you want it sorted by:
                               1. First name
                               2. Last name\n'''))
@@ -242,10 +251,10 @@ while True:
         elif sorted_by == number_two:
             members_by_last_name()
     # finding member information (needs to be updated)
-    elif user_input == number_five:
+    elif user_input == number_six:
         find_id()
     # exit the program
-    elif user_input == number_six:
+    elif user_input == number_seven:
         print("Thank you for using the Theatresports Database!")
         break
     # catches all invalid inputs
