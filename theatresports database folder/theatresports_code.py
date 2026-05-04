@@ -294,5 +294,5 @@ while True:
         else:
             print('That is not an option! Please put one of the numbers provided.')
             break
-    except:
+    except ValueError:
         print('That is not an option! Please put one of the numbers provided.')
