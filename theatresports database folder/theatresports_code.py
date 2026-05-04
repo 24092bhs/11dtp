@@ -213,7 +213,7 @@ def four_plus_players():
     '''print all games nicely'''
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
-    four_or_more = "SELECT * FROM theatre_game WHERE min_people >= 4;"
+    four_or_more = "SELECT * FROM theatre_game ORDER BY min_people ASC;"
     cursor.execute(four_or_more)
     results = cursor.fetchall()
     # loop through all results
@@ -268,12 +268,14 @@ while True:
         # find games that can be played with certain numbers of players
         elif user_input == number_four:
             number_of_players = int(input('How many people are in your team?\n'))
-            if number_of_players < number_four:
+            if number_two < number_of_players < number_four:
                 two_or_three_players()
             elif number_seven > number_of_players >= number_four:
                 four_plus_players()
             elif number_of_players >= number_seven:
                 print("Sorry, I cannot help you! You can only have up to six players per team.")
+            elif number_of_players <= number_two:
+                print("Sorry, I cannot help you! A minimum of three team members are required to participate.")
         # sorting members: if and elif statements for different was of sorting the data (need to include invalid inputs!)
         elif user_input == number_five:
             sorted_by = int(input('''\nDo you want it sorted by:
