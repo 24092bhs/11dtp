@@ -232,9 +232,9 @@ while True:
         1. All of the games in the database
         2. All of the blind round games
         3. All of the choice round games
-        4. Find what games can be played with all the members of my team
+        4. Find what games can be played with the members of my team
         5. The names of the BHS Theatresports team
-        6. The information (name or student ID) of a team member
+        6. The information (last name or student ID) of a team member
         7. Exit the program
 
         '''))
