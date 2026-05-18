@@ -1,10 +1,12 @@
 # 24092 - theatresports database application
 
 # imports
+import os
 import sqlite3
 
 # constants and variables
-DATABASE = "theatresports.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "theatresports.db")
 number_one = 1
 number_two = 2
 number_three = 3
@@ -17,7 +19,7 @@ number_seven = 7
 # print all games
 def print_all_games():
     '''print all games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     print_games = "SELECT * FROM theatre_game ORDER BY game_name ASC;"
     cursor.execute(print_games)
@@ -32,7 +34,7 @@ def print_all_games():
 # print blind round games
 def print_blind_round():
     '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     print_blind = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY game_name ASC;"
     cursor.execute(print_blind)
@@ -47,7 +49,7 @@ def print_blind_round():
 # sort all blind round games by difficulty
 def order_blind_by_difficulty():
     '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     blind_difficulty = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY difficulty ASC;"
     cursor.execute(blind_difficulty)
@@ -62,7 +64,7 @@ def order_blind_by_difficulty():
 # sort all blind round games by popularity
 def order_blind_by_popularity():
     '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     blind_popularity = "SELECT * FROM theatre_game WHERE round = 'Blind' ORDER BY popularity, game_name ASC;"
     cursor.execute(blind_popularity)
@@ -77,7 +79,7 @@ def order_blind_by_popularity():
 # print all choice round games
 def print_choice_round():
     '''print all choice round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     print_choice = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY game_name ASC;"
     cursor.execute(print_choice)
@@ -92,7 +94,7 @@ def print_choice_round():
 # sort all choice round games by difficulty
 def order_choice_by_difficulty():
     '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     choice_popularity = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY difficulty ASC;"
     cursor.execute(choice_popularity)
@@ -107,7 +109,7 @@ def order_choice_by_difficulty():
 # sort all choice round games by popularity
 def order_choice_by_popularity():
     '''print all blind round games games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     choice_difficulty = "SELECT * FROM theatre_game WHERE round = 'Choice' ORDER BY popularity ASC;"
     cursor.execute(choice_difficulty)
@@ -122,7 +124,7 @@ def order_choice_by_popularity():
 # sort all members by first name
 def members_by_first_name():
     '''print all members nicely (first name)'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     order_first_name = "SELECT * FROM team_member ORDER BY first_name ASC;"
     cursor.execute(order_first_name)
@@ -137,7 +139,7 @@ def members_by_first_name():
 # sort all members by last name
 def members_by_last_name():
     '''print all members nicely (last name)'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     order_last_name = "SELECT * FROM team_member ORDER BY last_name ASC;"
     cursor.execute(order_last_name)
@@ -152,7 +154,7 @@ def members_by_last_name():
 # find a student id (NEEDS TO BE FINISHED)
 def find_id():
     '''find the student id of one of the team members'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     while True:
         try:
@@ -196,7 +198,7 @@ def find_id():
 # print games that can be played with less than 4 players
 def two_or_three_players():
     '''print all games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     less_than_four = "SELECT * FROM theatre_game WHERE min_people < 4 ORDER BY min_people ASC;"
     cursor.execute(less_than_four)
@@ -211,7 +213,7 @@ def two_or_three_players():
 # print games that can be played with 4 or more players
 def four_plus_players():
     '''print all games nicely'''
-    db = sqlite3.connect(DATABASE)
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     four_or_more = "SELECT * FROM theatre_game ORDER BY min_people ASC;"
     cursor.execute(four_or_more)
